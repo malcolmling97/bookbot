@@ -1,3 +1,5 @@
+from stats import get_count_words
+
 def main():
     path = "books/frankenstein.txt"
     frank_contents = get_contents(path)
@@ -18,10 +20,6 @@ def main():
 def get_contents(path):
     with open(path) as f:
         return f.read()
-
-def get_count_words(content):
-    words = content.split()
-    return len(words)
 
 def get_char_count(content):
     dict = {}
