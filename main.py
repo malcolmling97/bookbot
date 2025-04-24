@@ -1,18 +1,24 @@
 from stats import get_count_words
+import sys
 
 def main():
-    path = "books/frankenstein.txt"
+    if len(sys.argv) < 2:
+        print("Usage: python3 main.py <path_to_book>")
+        sys.exit(1)
+    
+    # print("Arguments: ", sys.argv, len(sys.argv))
+    path = sys.argv[1]
     frank_contents = get_contents(path)
     frank_words = get_count_words(frank_contents)
     frank_char_dict = get_char_count(frank_contents)
 
     # print (frank_contents)
-    print ("--- Begin report of books/frankenstein.txt ---")
+    print (f"--- Begin report of {sys.argv[1]} ---")
     print (f"{frank_words} words were found in the document")
     # print (sorted(frank_char_dict.items(),key=lambda x: x[1], reverse=True))
     sorted_list = sorted(frank_char_dict.items(), key=lambda x: x[1], reverse=True)
     for i in range(0,len(sorted_list)):
-        print(f"The '{sorted_list[i][0]}' character was found {sorted_list[i][1]} times")
+        print(f"{sorted_list[i][0]}: {sorted_list[i][1]}")
     
     print("--- End report ---")
 
